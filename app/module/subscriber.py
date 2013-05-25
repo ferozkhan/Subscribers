@@ -33,7 +33,8 @@ class API(DataFormatUtil):
         MONGO_URL_DELETE = self.mongo_url.replace('?', '/%s?' % _id)
         response, content = http.request(
             MONGO_URL_DELETE, "DELETE", headers=self.headers)
-        print(content, response)
+        
+        return response['status']
 
     def POST(self, email):
         http = httplib2.Http()
@@ -41,7 +42,8 @@ class API(DataFormatUtil):
             subscribe_time=datetime.now().strftime("%Y-%m-%d %H:%M"), email=email))
         response, content = http.request(
             self.mongo_url, "POST", data, headers=self.headers)
-        print(response, content)
+
+        return response['status']
 
 
 class Subscriber(API):
@@ -50,10 +52,12 @@ class Subscriber(API):
         super(Subscriber, self).__init__(**kwargs)
 
     def subscribe(self, email):
-        self.POST(email)
+        status = self.POST(email)
+        return status
 
     def unsubscribe(self, id):
-        self.DELETE(id)
+        status = self.DELETE(id)
+        return status
 
     def subscribers(self):
         try:

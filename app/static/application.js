@@ -1,5 +1,7 @@
-var application = function(){
-
-    this.delete_subscriber = function(){}
-
-}
+$(document).ready(function() {
+    window.onsubmit = function(){
+        $.each($(".delete"), function(){
+            $(this).attr("disabled", "disabled");
+        });
+    }
+});
