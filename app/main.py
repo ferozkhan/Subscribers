@@ -1,14 +1,17 @@
 # -*- encoding: utf-8 -*-
 
 import os
+from ConfigParser import SafeConfigParser
 from flask import Flask, request, redirect, render_template, flash
 from module import subscriber, validator
 app = Flask(__name__)
 
+parser = SafeConfigParser()
+parser.read(os.path.join(os.path.dirname(__file__), 'config.cfg'))
 MONGO_ENV = {
-    "DB": "",
-    "API_KEY": "",
-    "COLLECTION": ""
+    "DB": parser.get('mongo', 'db')),
+    "API_KEY": parser.get('mongo', 'api_key'),
+    "COLLECTION": parser.get('mongo', 'collection')
 }
 
 
