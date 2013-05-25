@@ -64,7 +64,7 @@ class Subscriber(API):
             subs = self.str_to_json(urllib.urlopen(self.mongo_url).read())
             return subs
         except Exception as ex:
-            print ex
+            raise ex
 
     def subscriber(self, email):
         pass

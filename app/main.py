@@ -9,7 +9,7 @@ app = Flask(__name__)
 parser = SafeConfigParser()
 parser.read(os.path.join(os.path.dirname(__file__), 'config.cfg'))
 MONGO_ENV = {
-    "DB": parser.get('mongo', 'db')),
+    "DB": parser.get('mongo', 'db'),
     "API_KEY": parser.get('mongo', 'api_key'),
     "COLLECTION": parser.get('mongo', 'collection')
 }
@@ -22,7 +22,9 @@ def App(action=None):
         subs = subscriber.Subscriber(**MONGO_ENV)
         if action == 'subscribing':
             email = request.form['email']
-            validator.email(email)
+            valid_email = validator.email(email)
+            if not valid_email:
+                raise TypeError
             status = subs.subscribe(email)
         elif action == 'unsubscribing':
             id = request.form['_id']
@@ -40,6 +42,8 @@ def App(action=None):
         flash("Email address can not be empty", "error")
     except TypeError:
         flash("Invalid Email Format", "error")
+    except Exception as ex:
+        app.logger.error('An error occurred')
 
     return redirect('/')
 

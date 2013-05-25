@@ -6,8 +6,13 @@ Resource          variables.txt
 Library           Selenium2Library
 
 *** Test Cases ***
-Adding Subscriber Shoud Fail When Email is Empty
+Adding Subscriber Should Fail When Email is Empty
     Enter Email    ${empty}
+    Submit Form
+    Subscription is Failed
+
+Adding Subscriber Should Fail When Email is Invalid
+    Enter Email    zys@yyhh
     Submit Form
     Subscription is Failed
 
@@ -15,3 +20,7 @@ Addind Subscriber Should Succeed When Correct Email is Provided
     Enter Email    123@test.com
     Submit Form
     Subscription is Successful
+
+Deleting Subscriber Should Succeed When Deleting Subscribed Email
+    Click Delete Button
+    UnSubscription is Successful

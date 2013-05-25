@@ -1,6 +1,3 @@
-*** Settings ***
-Library           Selenium2Library
-
 *** Keywords ***
 Setup Test
     Open Browser    ${web_address}    ${browser}
@@ -17,3 +14,9 @@ Subscription is Successful
 
 Subscription is Failed
     Run Keyword And Expect Error    *    Subscription is Successful
+
+Click Delete Button
+    Click Element    1_unsubscribe
+
+UnSubscription is Successful
+    Wait Until Page Contains    Successful
