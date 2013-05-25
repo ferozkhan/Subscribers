@@ -1,0 +1,17 @@
+*** Settings ***
+Test Setup        Setup Test
+Test Teardown     Close Browser
+Resource          keywords.txt
+Resource          variables.txt
+Library           Selenium2Library
+
+*** Test Cases ***
+Adding Subscriber Shoud Fail When Email is Empty
+    Enter Email    ${empty}
+    Submit Form
+    Subscription is Failed
+
+Addind Subscriber Should Succeed When Correct Email is Provided
+    Enter Email    123@test.com
+    Submit Form
+    Subscription is Successful

@@ -1,0 +1,19 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Setup Test
+    Open Browser    ${web_address}    ${browser}
+
+Enter Email
+    [Arguments]    ${email}
+    Input Text    subscriber_email    ${email}
+
+Submit Form
+    Click Element    add_subscriber_btn
+
+Subscription is Successful
+    Wait Until Page Contains    Successful
+
+Subscription is Failed
+    Run Keyword And Expect Error    *    Subscription is Successful

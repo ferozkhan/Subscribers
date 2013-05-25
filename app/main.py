@@ -6,9 +6,9 @@ from module import subscriber, validator
 app = Flask(__name__)
 
 MONGO_ENV = {
-    "DB": "f27",
-    "API_KEY": "uljBLBoFbq9e_9PhDcD5eX17R58qe6s2",
-    "COLLECTION": "subscribers"
+    "DB": "",
+    "API_KEY": "",
+    "COLLECTION": ""
 }
 
 
@@ -19,7 +19,6 @@ def App(action=None):
         subs = subscriber.Subscriber(**MONGO_ENV)
         if action == 'subscribing':
             email = request.form['email']
-            print(type(email), '<<<<<<<<<')
             validator.email(email)
             status = subs.subscribe(email)
         elif action == 'unsubscribing':
