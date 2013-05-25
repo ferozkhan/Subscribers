@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html language="en">
+  <head>
+    <title>Subscriber Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css" media="screen">
+        .table th, .table td{
+            padding: 0px !important;
+            vertical-align: middle !important;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="row page-header">
+            <div class="span3">
+                <img src="/static/icons/group.png" class="icon pull-left" style="margin-top:3px;padding:0 5px;" />
+                <p class="lead span1"> 
+                    Subscribers 
+                </p>
+            </div>
+            <div class="span2 offset1">
+                <div class="input-append">
+                    <form action="subscribe" method="POST">
+                      <input class="span5" id="appendedInputButton" name="email" type="text"  placeholder="Email">
+                      <button class="btn" type="submit">Add Subscriber</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <p></p>
+        <p></p>
+        <div class="row">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="50">#</td>
+                        <th>Email</th>
+                        <th>Subscribed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subscriber in subscribers %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ subscriber.email }}</td>
+                        <td>{{ subscriber.subscribe_time}}</td>
+                        <td>
+                            <div class="btn-toolbar">
+                                <button class="btn btn-mini delete" type="button" id="{{ subscriber._id }}"><i class="icon-trash"></i>Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/application.js"></script>
+  </body>
+</html>
