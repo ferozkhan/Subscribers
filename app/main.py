@@ -4,6 +4,7 @@ import os
 from ConfigParser import SafeConfigParser
 from flask import Flask, request, redirect, render_template, flash
 from module import subscriber, validator
+
 app = Flask(__name__)
 
 parser = SafeConfigParser()
@@ -48,6 +49,6 @@ def App(action=None):
     return redirect('/')
 
 
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.secret_key = '\xbey<O\xb7\x1c\x8ay\xc1\x8ez/\xd7vUE\xc3\xe4\x99 4\xe30\x1d'
 if __name__ == '__main__':
     app.run()
