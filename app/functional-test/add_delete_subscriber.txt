@@ -16,7 +16,7 @@ Adding Subscriber Should Fail When Email is Invalid
     Submit Form
     Subscription is Failed
 
-Addind Subscriber Should Succeed When Correct Email is Provided
+Adding Subscriber Should Succeed When Correct Email is Provided
     Enter Email    123@test.com
     Submit Form
     Subscription is Successful
