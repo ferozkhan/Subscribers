@@ -6,7 +6,7 @@ import simplejson
 import urllib
 from datetime import datetime
 
-MONGO_URI = "https://api.mongolab.com/api/1/databases/%(DB)s/collections/%(COLLECTION)s?apiKey=%(API_KEY)s"
+MONGO_URI = "https://api.mongolab.com/api/1/databases/%(db)s/collections/%(collection)s?apiKey=%(api_key)s"
 
 
 class DataFormatUtil(object):
@@ -33,7 +33,7 @@ class API(DataFormatUtil):
         MONGO_URL_DELETE = self.mongo_url.replace('?', '/%s?' % _id)
         response, content = http.request(
             MONGO_URL_DELETE, "DELETE", headers=self.headers)
-        
+
         return response['status']
 
     def POST(self, email):
@@ -51,11 +51,11 @@ class Subscriber(API):
     def __init__(self, **kwargs):
         super(Subscriber, self).__init__(**kwargs)
 
-    def subscribe(self, email):
+    def add_subscriber(self, email):
         status = self.POST(email)
         return status
 
-    def unsubscribe(self, id):
+    def delete_subscriber(self, id):
         status = self.DELETE(id)
         return status
 

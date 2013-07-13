@@ -6,9 +6,7 @@ EMAIL_REGX = '^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.
 
 def email(email=None):
     ''' email validator '''
-    if not email:
-        raise ValueError
-    elif not isinstance(email, basestring):
-        raise TypeError
+    if not email and not isinstance(email, basestring):
+        raise False
     else:
         return bool(re.match(EMAIL_REGX, email))

@@ -18,20 +18,20 @@
         <div class="row page-header">
             <div class="span3">
                 <img src="/static/icons/group.png" class="icon pull-left" style="margin-top:3px;padding:0 5px;" />
-                <p class="lead span1"> 
-                    Subscribers 
+                <p class="lead span1">
+                    Subscribers
                 </p>
             </div>
             <div class="span2 offset1">
                 <div class="input-append">
-                    <form action="subscribing" method="POST" id="add_subscriber_form">
+                    <form action="add" method="POST" id="add_subscriber_form">
                       <input class="span5" id="subscriber_email" name="email" type="text"  placeholder="Email">
                       <button class="btn" id="add_subscriber_btn" type="submit">Add Subscriber</button>
                     </form>
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             {% if not subscribers %}
                 <div class="alert alert-info">
@@ -68,7 +68,7 @@
                     </thead>
                     <tbody>
                         {% for subscriber in subscribers %}
-                        <form action="unsubscribing" method="POST">
+                        <form action="delete" method="POST">
                         <input type="hidden" name="_id" value="{{ subscriber._id['$oid'] }}">
                         <tr>
                             <td>{{ loop.index }}</td>
@@ -87,7 +87,7 @@
             {% endif %}
         </div>
     </div>
-    
+
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
     <script src="/static/application.js"></script>
